@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <p>test</p>
       {combos.map(combo => (
-        <Combo combo={combo} />
+        <Combo key={combo.name} combo={combo} />
       ))}
     </div>
   );

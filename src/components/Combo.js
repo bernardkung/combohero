@@ -5,7 +5,7 @@ import left from '../assets/left.svg';
 
 
 const Combo = ({ combo }) => {
-  console.log(combo.combo.split(','))
+  
   const arrows = {
     "up"    : up,
     "right" : right,
@@ -14,12 +14,12 @@ const Combo = ({ combo }) => {
   }
 
   return (
-    <div className={'flexCol comboContainer'}>
-      <span>{ combo.name }</span>
-      <span>{ combo.category }</span>
-      <span className={'flexRow'}>
-        { combo.combo.split(',').map(c=>(
-          <img className={'arrow'} src={arrows[c]} />
+    <div key={combo.name} className={'flexCol comboContainer'}>
+      <span className={'comboName'}>{ combo.name }</span>
+      <span className={'comboCategory'}>{ combo.category }</span>
+      <span className={'flexRow comboArrows'}>
+        { combo.combo.split(',').map((c,i)=>(
+          <img key={combo.combo + i} className={'arrow'} src={arrows[c]} />
         ))}
       </span>
     </div>
