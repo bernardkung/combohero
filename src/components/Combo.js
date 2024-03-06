@@ -14,7 +14,7 @@ const Combo = ({ combo }) => {
   }
 
   return (
-    <div key={combo.name} className={'flexCol comboContainer'}>
+    <div className={'flexCol comboContainer'}>
       <span className={'comboName'}>{ combo.name }</span>
       <span className={'comboCategory'}>{ combo.category }</span>
       <span className={'flexRow comboArrows'}>

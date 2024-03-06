@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Combo from './components/Combo';
+import List from './components/List';
 import combos from './data/helldivers2combos.json';
 
 function App() {
 
-  console.log(combos)
-
   return (
     <div className="App">
-      <p>test</p>
-      {combos.map(combo => (
-        <Combo key={combo.name} combo={combo} />
-      ))}
+      <p>COMBO HERO!!!</p>
+      <List combos={ combos }/>
     </div>
   );
 }
