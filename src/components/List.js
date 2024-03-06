@@ -1,6 +1,6 @@
-import Combo from '../components/Combo';
+import { Combo } from '../components/Combo';
 
-const List = ({ combos }) => {
+export const List = ({ combos }) => {
 
   return (
     <div className={'flexCol listContainer'}>
@@ -10,5 +10,3 @@ const List = ({ combos }) => {
     </div>
   )
 }
-
-export default List

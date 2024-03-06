@@ -4,7 +4,11 @@ import down from '../assets/down.svg';
 import left from '../assets/left.svg';
 
 
-const Combo = ({ combo }) => {
+export const Combo = ({ combo }) => {
+  
+  if (!combo) {
+    return(<div></div>)
+  }
   
   const arrows = {
     "up"    : up,
@@ -13,6 +17,7 @@ const Combo = ({ combo }) => {
     "left"  : left,
   }
 
+  console.log(combo)
   return (
     <div className={'flexCol comboContainer'}>
       <span className={'comboName'}>{ combo.name }</span>
@@ -25,5 +30,3 @@ const Combo = ({ combo }) => {
     </div>
   )
 }
-
-export default Combo
