@@ -17,14 +17,15 @@ export const Combo = ({ combo }) => {
     "left"  : left,
   }
 
-  console.log(combo)
+  // console.log(combo)
+
   return (
     <div className={'flexCol comboContainer'}>
       <span className={'comboName'}>{ combo.name }</span>
       <span className={'comboCategory'}>{ combo.category }</span>
       <span className={'flexRow comboArrows'}>
-        { combo.combo.split(',').map((c,i)=>(
-          <img key={combo.combo + i} className={'arrow'} src={arrows[c]} />
+        { combo.combo.map((c,i)=>(
+          <img key={i} className={'arrow'} src={arrows[c]} alt={c}/>
         ))}
       </span>
     </div>
