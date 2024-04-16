@@ -23,9 +23,19 @@ export const Terminal = ({ combos }) => {
     setExpectedIndex(0)
   }
 
+  function resetCombo() {
+    setExpectedIndex(0)
+  }
+
   useEffect(()=>{
+    console.log("x")
     selectNewCombo()
   }, [])
+
+  useEffect(()=>{
+    const expectedKey = activeCombo ? keyCodes[ activeCombo.combo[expectedIndex] ] : ""
+    console.log("exp:", expectedKey, "index:", expectedIndex)
+  }, [expectedIndex])
 
   // Select a new combo to display
   useEffect(()=>{
@@ -38,12 +48,20 @@ export const Terminal = ({ combos }) => {
   function checkLastKey(keyCode) {
     const expectedKey = activeCombo ? keyCodes[ activeCombo.combo[expectedIndex] ] : ""
     console.log("press:", keyCode, "exp:", expectedKey, "index:", expectedIndex)
+    // If correct key pressed
     if (keyCode === expectedKey) {
+      // If combo finished
       if (expectedIndex>=activeCombo.combo.length-1) {
         selectNewCombo()
         return
       }
+      // Otherwise proceed through combo
       setExpectedIndex(expectedIndex + 1)
+    }
+    // If wrong key pressed
+    else {
+      resetCombo()
+      return
     }
   }
 
@@ -51,12 +69,13 @@ export const Terminal = ({ combos }) => {
   useEffect(()=>{
     if (keyPressed) {
       setKeyPressed(false)
+      checkLastKey(lastKey)
     }
-    checkLastKey(lastKey)
   }, [keyPressed])
 
   // Handle Keylistener
   function handleKeyDown(e) {
+    console.log(e.keyCode)
     setLastKey(e.keyCode)
     setKeyPressed(true)
   }
@@ -74,7 +93,7 @@ export const Terminal = ({ combos }) => {
   
   return (
     <div className={'terminalContainer'} >
-      <Combo combo={activeCombo} />
+      <Combo combo={activeCombo} expectedIndex={expectedIndex}/>
     </div>
   )
 }
