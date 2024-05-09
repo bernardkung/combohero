@@ -1,3 +1,8 @@
+body {
+  background-color: rgb(46, 46, 49);
+  color: #fff;
+}
+
 .App {
   text-align: center;
 }
@@ -26,19 +31,15 @@
 
 .arrow {
   height: 100px;
-  width: 100px;
-  /* background-color: red; */
-  /* -webkit-mask: url(logo.svg) no-repeat center;
-  mask: url(logo.svg) no-repeat center; */
-  
+  width: 100px;  
 }
 
 .deactivated {
-  stroke: orange;
-  fill: orange;
+  stroke: gray;
+  fill: gray;
 }
 
 .activated {
-  stroke: gray;
-  fill: gray;
+  stroke: orange;
+  fill: orange;
 }

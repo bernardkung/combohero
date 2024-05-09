@@ -1,8 +1,4 @@
-import up from '../assets/up.svg';
-import right from '../assets/right.svg';
-import down from '../assets/down.svg';
-import left from '../assets/left.svg';
-// import { Arrow } from '../components/Arrow';
+
 import { ReactComponent as upArrow } from '../assets/up.svg';
 import { ReactComponent as rightArrow } from '../assets/right.svg';
 import { ReactComponent as downArrow }  from '../assets/down.svg';
@@ -15,12 +11,6 @@ export const Combo = ({ combo, expectedIndex }) => {
     return(<div></div>)
   }
   
-  const arrows = {
-    "up"    : up,
-    "right" : right,
-    "down"  : down,
-    "left"  : left,
-  }
 
   const arrowComponents = {
     "up"    : upArrow,
@@ -50,10 +40,6 @@ export const Combo = ({ combo, expectedIndex }) => {
       })
       }
 
-        
-        {/* { combo.combo.map((c,i)=>(
-          <Arrow key={i} i={i} c={c} expectedIndex={expectedIndex}/>
-        ))} */}
         
       </span>
     </div>
