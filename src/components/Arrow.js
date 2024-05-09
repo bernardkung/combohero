@@ -25,17 +25,20 @@ export const Arrow = ({ i,c, expectedIndex })=>{
   }
 
   return (
-    <svg 
-      key={i} 
-      className={`arrow ${i < expectedIndex ? 'activated' : 'deactived'}`} 
-      // xmlns={arrows[c]} 
-	    xmlns="<http://www.w3.org/2000/svg>"
-      alt={c}
-      fill={"green"}
-      viewBox="0 0 24 24"
-      >
-			<use xlinkHref={arrows[c]} />
-    </svg>
+    <div>
+      {arrowComponents[c]}
+    </div>
+    // <svg 
+    //   key={i} 
+    //   className={`arrow ${i < expectedIndex ? 'activated' : 'deactived'}`} 
+    //   // xmlns={arrows[c]} 
+	  //   xmlns="<http://www.w3.org/2000/svg>"
+    //   alt={c}
+    //   // fill={"green"}
+    //   viewBox="0 0 24 24"
+    //   >
+		// 	<use xlinkHref={arrows[c]} transform={scale(5)} />
+    // </svg>
   )
 
 
