@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Combo } from '../components/Combo';
+import { ReactComponent as SuperEarth }  from '../assets/SuperEarthOriginalColors.svg';
 
 export const Terminal = ({ combos }) => {
 
@@ -49,14 +50,15 @@ export const Terminal = ({ combos }) => {
     const expectedKey = currentCombo ? keyCodes[ currentCombo.combo[expectedIndex] ] : ""
     console.log("press:", keyCode, "exp:", expectedKey, "index:", expectedIndex)
     // Correct Keypress
+    setExpectedIndex(expectedIndex + 1)
     if (keyCode === expectedKey) {
       // Combo Finished
       if (expectedIndex>=currentCombo.combo.length-1) {
-        selectNewCombo()
+        setTimeout(() => {
+          selectNewCombo()
+        }, 300)
         return
       }
-      // Combo Not Finished
-      setExpectedIndex(expectedIndex + 1)
     }
     // Incorrect Keypress
     else {
@@ -94,6 +96,7 @@ export const Terminal = ({ combos }) => {
   return (
     <div className={'terminalContainer'} >
       <Combo combo={currentCombo} expectedIndex={expectedIndex}/>
+      <SuperEarth className={'superEarth'}/>
     </div>
   )
 }

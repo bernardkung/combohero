@@ -11,6 +11,11 @@ body {
   color: #61dafb;
 }
 
+.superEarth {
+  fill: gray;
+  opacity: 0.05;
+}
+
 .flexCol {
   display: flex;
   flex-flow: column nowrap;

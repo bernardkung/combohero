@@ -30,7 +30,7 @@ export const Combo = ({ combo, expectedIndex }) => {
       { combo.combo.map((c,i)=>{
         const Arrow = arrowComponents[c] 
         return (
-        <div style={{height: 100, width: 100}}>
+        <div key={i} style={{height: 100, width: 100}}>
           <p>{c}</p>
           <Arrow 
             key={i}
