@@ -18,32 +18,32 @@ export const Terminal = ({ combos }) => {
   }
 
   function selectNewCombo() {
-    console.log("Generating new combo!")
     const randInt = Math.floor( combos.length * Math.random() )
     setCurrentCombo( combos[ randInt ] )
-    setExpectedIndex(0)
   }
 
   function resetCombo() {
     setExpectedIndex(0)
   }
 
+  function finishCombo() {
+    setTimeout(() => {
+      selectNewCombo()
+      setExpectedIndex(0)
+    }, 300)
+  }
+
+  // ON LOAD
   useEffect(()=>{
-    console.log("x")
     selectNewCombo()
   }, [])
 
+  // TESTING: keypress logic
   useEffect(()=>{
     const expectedKey = currentCombo ? keyCodes[ currentCombo.combo[expectedIndex] ] : ""
     console.log("exp:", expectedKey, "index:", expectedIndex)
   }, [expectedIndex])
 
-  // Select a new combo to display
-  useEffect(()=>{
-    if (combos && combos.length > 0) { 
-      selectNewCombo()
-    }
-  }, [ combos ])
 
   // Check Keypress against Combo
   function checkLastKey(keyCode) {
@@ -54,9 +54,7 @@ export const Terminal = ({ combos }) => {
     if (keyCode === expectedKey) {
       // Combo Finished
       if (expectedIndex>=currentCombo.combo.length-1) {
-        setTimeout(() => {
-          selectNewCombo()
-        }, 300)
+        finishCombo()
         return
       }
     }
@@ -94,7 +92,7 @@ export const Terminal = ({ combos }) => {
 
   
   return (
-    <div className={'terminalContainer'} >
+    <div className={'terminalContainer flexCol'} >
       <Combo combo={currentCombo} expectedIndex={expectedIndex}/>
       <SuperEarth className={'superEarth'}/>
     </div>
