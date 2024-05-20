@@ -9,6 +9,8 @@ export const Terminal = ({ combos }) => {
   const [ expectedIndex, setExpectedIndex ] = useState(0)
   const [ lastKey, setLastKey ] = useState()
   const [ keyPressed, setKeyPressed ] = useState(false)
+  const [ wrongPress, setWrongPress ] = useState(false)
+  const [ listening, setListening ] = useState(true)
   
   const keyCodes = {
     'up'    : 87,
@@ -22,8 +24,12 @@ export const Terminal = ({ combos }) => {
     setCurrentCombo( combos[ randInt ] )
   }
 
-  function resetCombo() {
-    setExpectedIndex(0)
+  function resetCombo(t=0) {
+    setTimeout(()=>{
+      setWrongPress(false)
+      setListening(true)
+      setExpectedIndex(0)
+    }, t)
   }
 
   function finishCombo() {
@@ -31,6 +37,12 @@ export const Terminal = ({ combos }) => {
       selectNewCombo()
       setExpectedIndex(0)
     }, 300)
+  }
+
+  function failedCombo() {
+    setWrongPress(true)
+    setListening(false)
+    resetCombo(1000)
   }
 
   // ON LOAD
@@ -49,8 +61,10 @@ export const Terminal = ({ combos }) => {
   function checkLastKey(keyCode) {
     const expectedKey = currentCombo ? keyCodes[ currentCombo.combo[expectedIndex] ] : ""
     console.log("press:", keyCode, "exp:", expectedKey, "index:", expectedIndex)
-    // Correct Keypress
+
     setExpectedIndex(expectedIndex + 1)
+
+    // Correct Keypress
     if (keyCode === expectedKey) {
       // Combo Finished
       if (expectedIndex>=currentCombo.combo.length-1) {
@@ -60,22 +74,25 @@ export const Terminal = ({ combos }) => {
     }
     // Incorrect Keypress
     else {
-      resetCombo()
+      failedCombo()
       return
     }
   }
 
   // Triggers on keypress
   useEffect(()=>{
-    if (keyPressed) {
+    console.log("t:", keyPressed && listening)
+    if ( keyPressed ) {
       setKeyPressed(false)
-      checkLastKey(lastKey)
+      if (listening) {
+        checkLastKey(lastKey)
+      }
     }
   }, [keyPressed])
 
   // Handle Keylistener
   function handleKeyDown(e) {
-    console.log(e.keyCode)
+    console.log(e.keyCode, listening)
     setLastKey(e.keyCode)
     setKeyPressed(true)
   }
@@ -93,7 +110,7 @@ export const Terminal = ({ combos }) => {
   
   return (
     <div className={'terminalContainer flexCol'} >
-      <Combo combo={currentCombo} expectedIndex={expectedIndex}/>
+      <Combo combo={currentCombo} expectedIndex={expectedIndex} wrongPress={wrongPress} />
       <SuperEarth className={'superEarth'}/>
     </div>
   )

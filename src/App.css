@@ -50,3 +50,8 @@ body {
   stroke: orange;
   fill: orange;
 }
+
+.error {
+  stroke: red;
+  fill: red;
+}

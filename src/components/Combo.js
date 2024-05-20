@@ -5,7 +5,7 @@ import { ReactComponent as downArrow }  from '../assets/down.svg';
 import { ReactComponent as leftArrow }  from '../assets/left.svg';
 
 
-export const Combo = ({ combo, expectedIndex }) => {
+export const Combo = ({ combo, expectedIndex, wrongPress }) => {
   
   if (!combo) {
     return(<div></div>)
@@ -34,7 +34,12 @@ export const Combo = ({ combo, expectedIndex }) => {
           <p>{c}</p>
           <Arrow 
             key={i}
-            className={`arrow ${i < expectedIndex ? 'activated' : 'deactivated'}`} 
+            className={`arrow ${
+              i < expectedIndex 
+                ? wrongPress 
+                  ? 'error' : 'activated' 
+                : 'deactivated'
+            }`} 
           />
         </div>)
       })
