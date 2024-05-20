@@ -24,8 +24,6 @@ export const Combo = ({ combo, expectedIndex, wrongPress }) => {
 
   return (
     <div className={'flexCol comboContainer'}>
-      <span className={'comboName'}>{ combo.name }</span>
-      <span className={'comboCategory'}>{ combo.category }</span>
       <span className={'flexRow comboArrows'}>
       { combo.combo.map((c,i)=>{
         const Arrow = arrowComponents[c] 

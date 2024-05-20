@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Combo } from '../components/Combo';
+import { Display } from '../components/Display';
 import { ReactComponent as SuperEarth }  from '../assets/SuperEarthOriginalColors.svg';
 
 export const Terminal = ({ combos }) => {
@@ -110,6 +111,7 @@ export const Terminal = ({ combos }) => {
   
   return (
     <div className={'terminalContainer flexCol'} >
+      <Display combo={currentCombo} />
       <Combo combo={currentCombo} expectedIndex={expectedIndex} wrongPress={wrongPress} />
       <SuperEarth className={'superEarth'}/>
     </div>

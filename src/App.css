@@ -32,6 +32,11 @@ body {
   align-items: center;
 }
 
+.comboIcon {
+  height: 100px;
+  width: 100px;
+}
+
 .comboContainer {
   padding: 5px;
 }
