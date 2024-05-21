@@ -24,11 +24,15 @@ body {
   color: #61dafb;
 }
 
+.title {
+  font-size: 30px;
+}
 .superEarth {
   fill: gray;
   opacity: 0.05;
   display: block;
-  width: 20%;
+  position: absolute;
+  width: 40%;
 }
 
 .flexCol {
@@ -52,6 +56,7 @@ body {
 .comboIcon {
   height: 100px;
   width: 100px;
+  margin: 10px 10px 20px 10px;
 }
 
 .comboName {
@@ -59,6 +64,7 @@ body {
   font-family: 'FS Sinclair';
   font-size: 30px;
   padding: 10px;
+  margin: 10px 10px 20px 10px;
   background-color: yellow;
   color: black;
   font-weight: 400;

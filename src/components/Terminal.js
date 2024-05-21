@@ -111,6 +111,8 @@ export const Terminal = ({ combos }) => {
   
   return (
     <div className={'terminalContainer flexCol'} >
+      
+      <p className={'title'} >DANCE DANCE LIBERATION!!!</p>
       <Display combo={currentCombo} />
       <Combo combo={currentCombo} expectedIndex={expectedIndex} wrongPress={wrongPress} />
       <SuperEarth className={'superEarth'}/>

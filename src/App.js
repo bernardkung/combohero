@@ -8,7 +8,6 @@ function App() {
 
   return (
     <div className="App">
-      <p>DANCE DANCE LIBERATION!!!</p>
       
       <Terminal combos={combos} />
     
