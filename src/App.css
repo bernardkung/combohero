@@ -49,6 +49,8 @@ body {
   align-items: center;
 }
 
+/* DISPLAY */
+
 .displayContainer {
   width: 500px;
 }
@@ -72,13 +74,46 @@ body {
   font-weight: 400;
 }
 
+.roundTracker {
+  height: 100px;
+  width: 120px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.roundValue {
+  font-size: 40px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.scoreTracker {
+  height: 100px;
+  width: 120px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.scoreValue {
+  font-size: 40px;
+  font-weight: 400;
+  margin: 0;
+}
+
+/* COMBO ARROWS */
+
 .comboContainer {
   padding: 5px;
 }
 
 .arrow {
   height: 80px;
-  width: 80px;  
+  width: 80px;
+  max-width: 80px;
 }
 
 .deactivated {
