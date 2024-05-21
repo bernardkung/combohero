@@ -10,29 +10,29 @@
   font-style: normal;
 }
 
+html, body, #root, .App {
+  width: 100%
+}
+
 body {
   background-color: rgb(46, 46, 49);
   color: #fff;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .App {
   text-align: center;
   font-family: 'FS Sinclair';
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-.title {
-  font-size: 30px;
-}
-.superEarth {
-  fill: gray;
-  opacity: 0.05;
-  display: block;
   position: absolute;
-  width: 40%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .flexCol {
@@ -49,10 +49,50 @@ body {
   align-items: center;
 }
 
+/* TERMINAL */
+.terminalContainer {
+  width: 100%;
+  max-width: 720px;
+  border: 1px solid red;
+  margin: 10px;
+  padding: 20px 10px 40px 10px;
+  text-align: center;
+  font-family: 'FS Sinclair';
+}
+
+.title {
+  font-size: 30px;
+  /* background-color: #e0ddd1; */
+  color: #fff;
+  height: 40px;
+  width: 100%;
+  padding: 10px;
+  margin: 0;
+}
+
+.superEarth {
+  fill: gray;
+  opacity: 0.05;
+  display: block;
+  position: absolute;
+  width: 40%;
+}
+
 /* DISPLAY */
 
 .displayContainer {
-  width: 500px;
+  width: 100%;
+  margin: 10px;
+}
+
+.display {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .comboIcon {
@@ -65,10 +105,11 @@ body {
 
 .comboName {
   width: 100%;
+  box-sizing: border-box;
   font-family: 'FS Sinclair';
   font-size: 30px;
   padding: 10px;
-  margin: 10px 10px 20px 10px;
+  margin: 10px 0px;
   background-color: yellow;
   color: black;
   font-weight: 400;
@@ -83,11 +124,6 @@ body {
   align-items: flex-start;
 }
 
-.roundValue {
-  font-size: 40px;
-  font-weight: 400;
-  margin: 0;
-}
 
 .scoreTracker {
   height: 100px;
@@ -98,8 +134,12 @@ body {
   align-items: flex-end;
 }
 
-.scoreValue {
-  font-size: 40px;
+.label {
+  margin: 10px 0px;
+}
+
+.value {
+  font-size: 50px;
   font-weight: 400;
   margin: 0;
 }
@@ -111,8 +151,8 @@ body {
 }
 
 .arrow {
-  height: 80px;
-  width: 80px;
+  /* height: 80px; */
+  width: 100%;
   max-width: 80px;
 }
 

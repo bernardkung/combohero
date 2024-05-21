@@ -4,8 +4,8 @@ export const ScoreTracker = ({ score }) => {
 
   return (
   <div className={'scoreTracker'}>
-    <p className={'scoreValue'}>{ score }</p>
-    <p className={'scoreLabel'}>Score</p>
+    <p className={'scoreLabel label'}>Score</p>
+    <p className={'scoreValue value'}>{ score }</p>
   </div>
   )
 }

@@ -4,8 +4,8 @@ export const RoundTracker = ({ round }) => {
 
   return (
   <div className={'roundTracker'}>
-    <p className={'roundValue'}>{ round }</p>
-    <p className={'roundLabel'}>Round</p>
+    <p className={'roundLabel label'}>Round</p>
+    <p className={'roundValue value'}>{ round }</p>
   </div>
   )
 }
