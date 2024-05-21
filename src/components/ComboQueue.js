@@ -24,7 +24,7 @@ export const ComboQueue = ({ comboQueue, queueIndex }) => {
         return (
           <img 
             key={i} 
-            className={`comboIcon ${i == 2 ? 'activeIcon' : 'inactiveIcon'}`} 
+            className={`comboIcon ${i == 2 ? 'activeIcon' : 'inactiveIcon'}`}
             src={getLogo(c)}
           />
         )
