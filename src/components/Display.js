@@ -1,27 +1,25 @@
 import { ScoreTracker } from '../components/ScoreTracker';
 import { RoundTracker } from '../components/RoundTracker';
+import { ComboQueue } from '../components/ComboQueue';
 
 import defaultSvg from '../assets/logo.svg'
 const reqSvgs  = require.context ( '../assets/stratagems', true, /\.svg$/ )
 const svgKeys = reqSvgs.keys()
 
-export const Display = ({ combo, score, round }) => {
+export const Display = ({ combo, comboQueue, queueIndex, score, round }) => {
   if (!combo) { return(<div></div>) }
 
-  const svgKey = `./${combo.name}.svg`
-  const svgPath = svgKeys.includes(svgKey)
-    ? reqSvgs(svgKey)
-    : defaultSvg
+  const currentCombo = comboQueue[2]
 
   return (
   <div className={'displayContainer flexCol'}>
     <span className={'display'}>
 
       <RoundTracker round={round} />
-      <img className={'comboIcon'} src={svgPath} />
+      <ComboQueue comboQueue={comboQueue} queueIndex={queueIndex} />
       <ScoreTracker score={score} />
-
+      
     </span>
-    <span className={'comboName'}>{ combo.name.toUpperCase() }</span>
+    <span className={'comboName'}>{ currentCombo.name.toUpperCase() }</span>
   </div>)
 }

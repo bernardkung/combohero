@@ -95,12 +95,25 @@ body {
   align-items: flex-start;
 }
 
-.comboIcon {
-  height: 100px;
-  width: 100px;
-  margin: 10px 10px 20px 10px;
+.comboQueue {
+  width: 100%;
+  max-width: 460px;
+}
+
+.comboIcon{
+  width: 80px;
+  height: 80px;
   padding: 10px;
+  margin: 10px 0 20px 0;
+}
+
+.activeIcon {
+  height: 90px;
+  width: 90px;
   border: 1px solid yellow;
+}
+.inactiveIcon {
+  color: grey;
 }
 
 .comboName {
@@ -143,6 +156,7 @@ body {
   font-weight: 400;
   margin: 0;
 }
+
 
 /* COMBO ARROWS */
 

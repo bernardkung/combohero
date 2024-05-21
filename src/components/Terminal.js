@@ -7,6 +7,8 @@ export const Terminal = ({ combos }) => {
 
   // const [ playing, setPlaying ] = useState(false)
   const [ currentCombo, setCurrentCombo ] = useState()
+  const [ comboQueue, setComboQueue ] = useState([])
+  const [ queueIndex, setQueueIndex ] = useState(0)
   const [ expectedIndex, setExpectedIndex ] = useState(0)
   const [ lastKey, setLastKey ] = useState()
   const [ keyPressed, setKeyPressed ] = useState(false)
@@ -14,6 +16,7 @@ export const Terminal = ({ combos }) => {
   const [ listening, setListening ] = useState(true)
   const [ score, setScore ] = useState(0)
   const [ round, setRound ] = useState(0)
+  const [ endlessMode, setEndlessMode ] = useState(true)
 
   const keyCodes = {
     'up'    : 87,
@@ -22,9 +25,21 @@ export const Terminal = ({ combos }) => {
     'left'  : 65,
   }
 
-  function selectNewCombo() {
+  function generateRandomCombo() {
     const randInt = Math.floor( combos.length * Math.random() )
-    setCurrentCombo( combos[ randInt ] )
+    return combos[ randInt ]
+  }
+
+  function generateComboQueue(q=3) {
+    const queue = [{}, {}]
+    for (let i=0; i<q; i++) {
+      queue.push(generateRandomCombo())
+    }
+    setComboQueue(queue)
+  }
+
+  function selectNewCombo() {
+    setCurrentCombo( generateRandomCombo() )
   }
 
   function resetCombo(t=0) {
@@ -38,9 +53,16 @@ export const Terminal = ({ combos }) => {
   function finishCombo() {
     setScore(score+1)
     setRound(round+1)
+    // setQueueIndex(queueIndex+1)
     setTimeout(() => {
-      selectNewCombo()
+      // selectNewCombo()
       setExpectedIndex(0)
+      if (endlessMode) {
+        const newQueue = comboQueue.slice(1)
+        newQueue.push(generateRandomCombo())
+        console.log("nq:", newQueue)
+        setComboQueue(newQueue)
+      }
     }, 300)
   }
 
@@ -51,10 +73,17 @@ export const Terminal = ({ combos }) => {
     resetCombo(1000)
   }
 
+
   // ON LOAD
   useEffect(()=>{
     selectNewCombo()
+    generateComboQueue()
   }, [])
+
+  // Update Current Combo
+  useEffect(()=>{
+    setCurrentCombo(comboQueue[2])
+  }, [comboQueue])
 
   // TESTING: keypress logic
   useEffect(()=>{
@@ -87,7 +116,6 @@ export const Terminal = ({ combos }) => {
 
   // Triggers on keypress
   useEffect(()=>{
-    console.log("t:", keyPressed && listening)
     if ( keyPressed ) {
       setKeyPressed(false)
       if (listening) {
@@ -118,9 +146,22 @@ export const Terminal = ({ combos }) => {
     <div className={'terminalContainer flexCol'} >
       
       <p className={'title'} >DANCE DANCE LIBERATION!!!</p>
-      <Display combo={currentCombo} score={score} round={round} />
-      <Combo combo={currentCombo} expectedIndex={expectedIndex} wrongPress={wrongPress} />
       {/* <SuperEarth className={'superEarth'}/> */}
+
+      <Display 
+        combo={currentCombo} 
+        comboQueue={comboQueue} 
+        queueIndex={queueIndex} 
+        score={score} 
+        round={round} 
+      />
+
+      <Combo 
+        currentCombo={comboQueue[2]} 
+        expectedIndex={expectedIndex} 
+        wrongPress={wrongPress} 
+      />
+
     </div>
   )
 }

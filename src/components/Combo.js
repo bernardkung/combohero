@@ -5,9 +5,9 @@ import { ReactComponent as downArrow }  from '../assets/down.svg';
 import { ReactComponent as leftArrow }  from '../assets/left.svg';
 
 
-export const Combo = ({ combo, expectedIndex, wrongPress }) => {
+export const Combo = ({ currentCombo, expectedIndex, wrongPress }) => {
   
-  if (!combo) {
+  if (!currentCombo) {
     return(<div></div>)
   }
   
@@ -19,10 +19,11 @@ export const Combo = ({ combo, expectedIndex, wrongPress }) => {
     "left"  : leftArrow,
   }
 
+  console.log("Combo:", currentCombo)
 
   return (
     <div className={'flexRow comboContainer'}>
-      { combo.combo.map((c,i)=>{
+      { currentCombo.combo.map((c,i)=>{
         const Arrow = arrowComponents[c] 
         return (
           <Arrow 
