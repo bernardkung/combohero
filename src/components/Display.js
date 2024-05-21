@@ -2,7 +2,7 @@ import defaultSvg from '../assets/logo.svg'
 const reqSvgs  = require.context ( '../assets/stratagems', true, /\.svg$/ )
 const svgKeys = reqSvgs.keys()
 
-export const Display = ({ combo }) => {
+export const Display = ({ combo, score }) => {
   if (!combo) { return(<div></div>) }
 
   const svgKey = `./${combo.name}.svg`
@@ -12,7 +12,10 @@ export const Display = ({ combo }) => {
 
   return (
   <div className={'displayContainer flexCol'}>
-    <img className={'comboIcon'} src={svgPath} />
+    <span className={'flexRow'}>
+      <p>{ score }</p>
+      <img className={'comboIcon'} src={svgPath} />
+    </span>
     <span className={'comboName'}>{ combo.name.toUpperCase() }</span>
   </div>)
 }

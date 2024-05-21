@@ -12,7 +12,8 @@ export const Terminal = ({ combos }) => {
   const [ keyPressed, setKeyPressed ] = useState(false)
   const [ wrongPress, setWrongPress ] = useState(false)
   const [ listening, setListening ] = useState(true)
-  
+  const [ score, setScore ] = useState(0)
+
   const keyCodes = {
     'up'    : 87,
     'right' : 68,
@@ -34,6 +35,7 @@ export const Terminal = ({ combos }) => {
   }
 
   function finishCombo() {
+    setScore(score+1)
     setTimeout(() => {
       selectNewCombo()
       setExpectedIndex(0)
@@ -43,6 +45,7 @@ export const Terminal = ({ combos }) => {
   function failedCombo() {
     setWrongPress(true)
     setListening(false)
+    setScore(0)
     resetCombo(1000)
   }
 
@@ -113,7 +116,7 @@ export const Terminal = ({ combos }) => {
     <div className={'terminalContainer flexCol'} >
       
       <p className={'title'} >DANCE DANCE LIBERATION!!!</p>
-      <Display combo={currentCombo} />
+      <Display combo={currentCombo} score={score} />
       <Combo combo={currentCombo} expectedIndex={expectedIndex} wrongPress={wrongPress} />
       <SuperEarth className={'superEarth'}/>
     </div>
