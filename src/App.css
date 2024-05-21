@@ -1,3 +1,15 @@
+@font-face {
+  font-family: 'FS Sinclair';
+  src: url('./assets/FS Sinclair/FS Sinclair Medium.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'FS Sinclair';
+  src: local('./assets/FS Sinclair/FS Sinclair Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
 body {
   background-color: rgb(46, 46, 49);
   color: #fff;
@@ -5,6 +17,7 @@ body {
 
 .App {
   text-align: center;
+  font-family: 'FS Sinclair';
 }
 
 .App-link {
@@ -32,9 +45,23 @@ body {
   align-items: center;
 }
 
+.displayContainer {
+  width: 500px;
+}
+
 .comboIcon {
   height: 100px;
   width: 100px;
+}
+
+.comboName {
+  width: 100%;
+  font-family: 'FS Sinclair';
+  font-size: 30px;
+  padding: 10px;
+  background-color: yellow;
+  color: black;
+  font-weight: 400;
 }
 
 .comboContainer {

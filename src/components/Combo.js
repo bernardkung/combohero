@@ -23,13 +23,11 @@ export const Combo = ({ combo, expectedIndex, wrongPress }) => {
   // console.log(combo)
 
   return (
-    <div className={'flexCol comboContainer'}>
-      <span className={'flexRow comboArrows'}>
+    <div className={'flexRow comboContainer'}>
       { combo.combo.map((c,i)=>{
         const Arrow = arrowComponents[c] 
         return (
         <div key={i} style={{height: 100, width: 100}}>
-          <p>{c}</p>
           <Arrow 
             key={i}
             className={`arrow ${
@@ -44,7 +42,6 @@ export const Combo = ({ combo, expectedIndex, wrongPress }) => {
       }
 
         
-      </span>
     </div>
   )
 }
