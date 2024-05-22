@@ -59,7 +59,7 @@ body {
   padding: 20px 0 40px 0;
   text-align: center;
   font-family: 'FS Sinclair';
-  box-shadow: inset 0px 0px 30px 2px #0ff;
+  /* box-shadow: inset 0px 0px 30px 2px #0ff; */
 }
 
 .title {
@@ -130,7 +130,7 @@ body {
   color: black;
   font-weight: 400;
   box-shadow: 0px 0px 20px 2px yellow;
-  clip-path: rect(-200% auto 200% auto);
+  /* clip-path: rect(-200% auto 200% auto); */
 }
 
 .roundTracker {
@@ -167,6 +167,7 @@ body {
 
 .comboContainer {
   padding: 5px;
+  margin: 20px 0px;
 }
 
 .arrow {
