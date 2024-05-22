@@ -59,13 +59,15 @@ body {
   padding: 20px 0 40px 0;
   text-align: center;
   font-family: 'FS Sinclair';
+  font-size: 32px;
   /* box-shadow: inset 0px 0px 30px 2px #0ff; */
 }
 
 .title {
-  font-size: 30px;
-  /* background-color: #e0ddd1; */
-  color: #fff;
+  font-size: 34px;
+  color: black;
+  background-color: yellow;
+  box-shadow: 0px 0px 20px 2px yellow;
   height: 40px;
   width: 100%;
   padding: 10px;
@@ -89,7 +91,7 @@ body {
 
 .display {
   width: 100%;
-  padding: 20px;
+  padding: 20px 5px;
   box-sizing: border-box;
   display: flex;
   flex-flow: row nowrap;
@@ -115,8 +117,38 @@ body {
   border: 1px solid yellow;
   box-shadow: 0px 0px 10px 1px yellow, inset 0px 0px 3px 1px yellow;
 }
+
 .inactiveIcon {
   color: grey;
+}
+
+.roundTracker {
+  height: 100px;
+  width: 120px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.scoreTracker {
+  height: 100px;
+  width: 120px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.label {
+  font-size: 20px;
+  margin: 10px 0px;
+}
+
+.value {
+  font-size: 36px;
+  font-weight: 400;
+  margin: 0;
 }
 
 .comboName {
@@ -131,35 +163,6 @@ body {
   font-weight: 400;
   box-shadow: 0px 0px 20px 2px yellow;
   /* clip-path: rect(-200% auto 200% auto); */
-}
-
-.roundTracker {
-  height: 100px;
-  width: 120px;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-
-.scoreTracker {
-  height: 100px;
-  width: 120px;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: flex-end;
-}
-
-.label {
-  margin: 10px 0px;
-}
-
-.value {
-  font-size: 50px;
-  font-weight: 400;
-  margin: 0;
 }
 
 
@@ -191,4 +194,11 @@ body {
 .error {
   stroke: red;
   fill: red;
+}
+
+/* PLAY TIMER */
+.playTimer {
+  -webkit-transition: width .3s ease;
+  -o-transition: width .3s ease;
+  transition: width .3s ease;
 }

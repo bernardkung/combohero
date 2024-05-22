@@ -19,7 +19,6 @@ export const Combo = ({ currentCombo, expectedIndex, wrongPress }) => {
     "left"  : leftArrow,
   }
 
-  console.log("Combo:", currentCombo)
 
   return (
     <div className={'flexRow comboContainer'}>

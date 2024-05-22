@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Combo } from '../components/Combo';
 import { Display } from '../components/Display';
 import { ReactComponent as SuperEarth }  from '../assets/SuperEarthOriginalColors.svg';
+import { ProgessBar, ProgressBar } from '../components/ProgressBar';
 
 export const Terminal = ({ combos }) => {
 
@@ -14,9 +15,12 @@ export const Terminal = ({ combos }) => {
   const [ keyPressed, setKeyPressed ] = useState(false)
   const [ wrongPress, setWrongPress ] = useState(false)
   const [ listening, setListening ] = useState(true)
+  const [ playing, setPlaying ] = useState(false)
+  const [ playTimer, setPlayTimer ] = useState()
   const [ score, setScore ] = useState(0)
   const [ round, setRound ] = useState(0)
   const [ endlessMode, setEndlessMode ] = useState(true)
+
 
   const keyCodes = {
     'up'    : 87,
@@ -51,6 +55,7 @@ export const Terminal = ({ combos }) => {
   }
 
   function finishCombo() {
+    playTimer.add(2000)
     setScore(score+1)
     setRound(round+1)
     // setQueueIndex(queueIndex+1)
@@ -60,7 +65,6 @@ export const Terminal = ({ combos }) => {
       if (endlessMode) {
         const newQueue = comboQueue.slice(1)
         newQueue.push(generateRandomCombo())
-        console.log("nq:", newQueue)
         setComboQueue(newQueue)
       }
     }, 300)
@@ -85,17 +89,15 @@ export const Terminal = ({ combos }) => {
     setCurrentCombo(comboQueue[2])
   }, [comboQueue])
 
-  // TESTING: keypress logic
-  useEffect(()=>{
-    const expectedKey = currentCombo ? keyCodes[ currentCombo.combo[expectedIndex] ] : ""
-    console.log("exp:", expectedKey, "index:", expectedIndex)
-  }, [expectedIndex])
-
-
+  
   // Check Keypress against Combo
   function checkLastKey(keyCode) {
     const expectedKey = currentCombo ? keyCodes[ currentCombo.combo[expectedIndex] ] : ""
     console.log("press:", keyCode, "exp:", expectedKey, "index:", expectedIndex)
+    console.log("time:", playTimer ? playTimer.time : 0)
+    console.log("start:", playTimer ? playTimer.start : 0)
+    console.log("now:", Date.now())
+    console.log("diff:", playTimer ? Date.now() - playTimer.start : 0)
 
     setExpectedIndex(expectedIndex + 1)
 
@@ -107,6 +109,7 @@ export const Terminal = ({ combos }) => {
         return
       }
     }
+
     // Incorrect Keypress
     else {
       failedCombo()
@@ -120,13 +123,15 @@ export const Terminal = ({ combos }) => {
       setKeyPressed(false)
       if (listening) {
         checkLastKey(lastKey)
+        if (!playing) {
+          setPlaying(true)
+        }
       }
     }
   }, [keyPressed])
 
   // Handle Keylistener
   function handleKeyDown(e) {
-    console.log(e.keyCode, listening)
     setLastKey(e.keyCode)
     setKeyPressed(true)
   }
@@ -141,6 +146,44 @@ export const Terminal = ({ combos }) => {
     }
   }, [lastKey]);
 
+  // TIMER
+  function Timer(callback, time) {
+    this.setTimeout(callback, time);
+  }
+
+  Timer.prototype.setTimeout = function(callback, time) {
+    var self = this;
+    if(this.timer) {
+        clearTimeout(this.timer);
+    }
+    this.finished = false;
+    this.callback = callback;
+    this.time = time;
+    this.timer = setTimeout(function() {
+          self.finished = true;
+        callback();
+    }, time);
+    this.start = Date.now();
+  }
+
+  Timer.prototype.add = function(time) {
+    if(!this.finished) {
+        // add time to time left
+        time = this.time - (Date.now() - this.start) + time;
+        this.setTimeout(this.callback, time);
+    }
+  }
+
+  useEffect(()=>{
+    if (playing) {
+      setPlayTimer(new Timer(function() { // init timer with 5 seconds
+        setPlaying(false)
+        setListening(false)
+        alert("Game Over!")
+      }, 5000)
+      )
+    }
+  }, [playing])
   
   return (
     <div className={'terminalContainer flexCol'} >
@@ -157,9 +200,14 @@ export const Terminal = ({ combos }) => {
       />
 
       <Combo 
-        currentCombo={comboQueue[2]} 
+        currentCombo={currentCombo} 
         expectedIndex={expectedIndex} 
         wrongPress={wrongPress} 
+      />
+
+      <ProgressBar 
+        width={playTimer ? Date.now() - playTimer.start : 700} 
+        max={playTimer ? playTimer.time : 700} 
       />
 
     </div>
