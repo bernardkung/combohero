@@ -1,9 +1,11 @@
-
-import { ReactComponent as upArrow } from '../assets/up.svg';
-import { ReactComponent as rightArrow } from '../assets/right.svg';
-import { ReactComponent as downArrow }  from '../assets/down.svg';
-import { ReactComponent as leftArrow }  from '../assets/left.svg';
-
+// import { ReactComponent as upArrow } from '../assets/up.svg';
+// import { ReactComponent as rightArrow } from '../assets/right.svg';
+// import { ReactComponent as downArrow } from '../assets/down.svg';
+// import { ReactComponent as leftArrow } from '../assets/left.svg';
+import upArrow from '../assets/icons/up.svg?react';
+import rightArrow from '../assets/icons/right.svg?react';
+import downArrow from '../assets/icons/down.svg?react';
+import leftArrow from '../assets/icons/left.svg?react';
 
 export const Combo = ({ currentCombo, expectedIndex, wrongPress }) => {
   

@@ -1,10 +1,10 @@
-import { ScoreTracker } from '../components/ScoreTracker';
-import { RoundTracker } from '../components/RoundTracker';
-import { ComboQueue } from '../components/ComboQueue';
+import { ScoreTracker } from './ScoreTracker.jsx';
+import { RoundTracker } from './RoundTracker.jsx';
+import { ComboQueue } from './ComboQueue.jsx';
 
-import defaultSvg from '../assets/logo.svg'
-const reqSvgs  = require.context ( '../assets/stratagems', true, /\.svg$/ )
-const svgKeys = reqSvgs.keys()
+// import defaultSvg from '../assets/icons/logo.svg'
+// const reqSvgs  = require.context ( '../assets/stratagems', true, /\.svg$/ )
+// const svgKeys = reqSvgs.keys()
 
 export const Display = ({ combo, comboQueue, queueIndex, score, round }) => {
   if (!combo) { return(<div></div>) }

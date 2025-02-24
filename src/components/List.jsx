@@ -1,4 +1,4 @@
-import { Combo } from '../components/Combo';
+import { Combo } from './Combo.jsx';
 
 export const List = ({ combos }) => {
 

@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Combo } from '../components/Combo';
-import { Display } from '../components/Display';
-import { ReactComponent as SuperEarth }  from '../assets/SuperEarthOriginalColors.svg';
-import { ProgessBar, ProgressBar } from '../components/ProgressBar';
+import { Combo } from './Combo.jsx';
+import { Display } from './Display.jsx';
+// import { ReactComponent as SuperEarth }  from '../assets/SuperEarthOriginalColors.svg';
+import SuperEarth from '../assets/SuperEarthOriginalColors.svg';
+
+import { ProgressBar } from './ProgressBar.jsx';
 
 export const Terminal = ({ combos }) => {
 
