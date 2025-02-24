@@ -57,15 +57,19 @@ export const Terminal = ({ combos }) => {
   function finishCombo() {
     playTimer.add(2000)
     setScore(score+1)
-    setRound(round+1)
-    // setQueueIndex(queueIndex+1)
+
     setTimeout(() => {
       // selectNewCombo()
       setExpectedIndex(0)
       if (endlessMode) {
+        setRound(round+1)
         const newQueue = comboQueue.slice(1)
         newQueue.push(generateRandomCombo())
         setComboQueue(newQueue)
+      } else {
+        setQueueIndex(queueIndex+1)
+        // SOMETHING was going here?
+        // if (queueIndex >= comboQueue.length)
       }
     }, 300)
   }
@@ -94,39 +98,41 @@ export const Terminal = ({ combos }) => {
   function checkLastKey(keyCode) {
     const expectedKey = currentCombo ? keyCodes[ currentCombo.combo[expectedIndex] ] : ""
     console.log("press:", keyCode, "exp:", expectedKey, "index:", expectedIndex)
-    console.log("time:", playTimer ? playTimer.time : 0)
-    console.log("start:", playTimer ? playTimer.start : 0)
-    console.log("now:", Date.now())
-    console.log("diff:", playTimer ? Date.now() - playTimer.start : 0)
-
-    setExpectedIndex(expectedIndex + 1)
-
-    // Correct Keypress
-    if (keyCode === expectedKey) {
-      // Combo Finished
-      if (expectedIndex>=currentCombo.combo.length-1) {
-        finishCombo()
+    if (playing) {
+      // const expectedKey = currentCombo ? keyCodes[ currentCombo.combo[expectedIndex] ] : ""
+      // console.log("press:", keyCode, "exp:", expectedKey, "index:", expectedIndex)
+  
+      console.log("timer:", playTimer ? (Date.now() - playTimer.start)/1000 + "s": 0)
+  
+      setExpectedIndex(expectedIndex + 1)
+  
+      // Correct Keypress
+      if (keyCode === expectedKey) {
+        // Combo Finished
+        if (expectedIndex>=currentCombo.combo.length-1) {
+          finishCombo()
+          return
+        }
+      }
+  
+      // Incorrect Keypress
+      else {
+        failedCombo()
         return
+      }
+    } else {
+      if (keyCode === 32) {
+        setPlaying(true)
       }
     }
 
-    // Incorrect Keypress
-    else {
-      failedCombo()
-      return
-    }
   }
 
   // Triggers on keypress
   useEffect(()=>{
     if ( keyPressed ) {
       setKeyPressed(false)
-      if (listening) {
-        checkLastKey(lastKey)
-        if (!playing) {
-          setPlaying(true)
-        }
-      }
+      checkLastKey(lastKey)
     }
   }, [keyPressed])
 
@@ -176,12 +182,17 @@ export const Terminal = ({ combos }) => {
 
   useEffect(()=>{
     if (playing) {
-      setPlayTimer(new Timer(function() { // init timer with 5 seconds
-        setPlaying(false)
-        setListening(false)
-        alert("Game Over!")
-      }, 5000)
+      // GAME OVER
+      setPlayTimer(
+        new Timer(function() { // init timer with 5 seconds
+          setPlaying(false)
+          setListening(false)
+          console.log("Game Over!")
+        }, 5000)
       )
+    } else {
+      // NEW GAME
+      setListening(true)
     }
   }, [playing])
   
@@ -206,8 +217,11 @@ export const Terminal = ({ combos }) => {
       />
 
       <ProgressBar 
-        width={playTimer ? Date.now() - playTimer.start : 700} 
-        max={playTimer ? playTimer.time : 700} 
+        playTimer = { playTimer }
+        playing = { playing }
+        // timeLeft={ playTimer ? Date.now() - playTimer.start : 0 }
+        // width={ playTimer ? Date.now() - playTimer.start : 1 }
+        // max={ playTimer ? playTimer.time : 1 }
       />
 
     </div>
